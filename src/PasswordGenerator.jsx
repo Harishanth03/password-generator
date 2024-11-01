@@ -14,6 +14,8 @@ const PasswordGenerator = () => {
 
     const [password , setPassword] = useState("");
 
+    const [copied , setCopied] = useState(false);
+
     const generatePassword = () => {
 
         let charSet = "";
@@ -45,7 +47,12 @@ const PasswordGenerator = () => {
 
     const copyToClipboard = () => 
     {
-        navigator.clipboard.writeText(password);
+        if(password)
+        {
+            navigator.clipboard.writeText(password);
+            setCopied(true);
+            setTimeout(() => setCopied(false) , 1000);
+        }
     }
 
   return (
@@ -101,7 +108,7 @@ const PasswordGenerator = () => {
 
                 <input type="text" readOnly value={password} />
 
-                <button className='copy-button' onClick={copyToClipboard}>Copy</button>
+                <button className='copy-button' onClick={copyToClipboard}>{copied ? "COPIED" : "COPY"}</button>
 
             </div>
 
