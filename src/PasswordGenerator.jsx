@@ -41,6 +41,11 @@ const PasswordGenerator = () => {
                 setPassword(generatePassword += charSet[randomIndex]);
             }
         }
+    };
+
+    const copyToClipboard = () => 
+    {
+        navigator.clipboard.writeText(password);
     }
 
   return (
@@ -96,7 +101,7 @@ const PasswordGenerator = () => {
 
                 <input type="text" readOnly value={password} />
 
-                <button className='copy-button'>Copy</button>
+                <button className='copy-button' onClick={copyToClipboard}>Copy</button>
 
             </div>
 
